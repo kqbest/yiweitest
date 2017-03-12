@@ -1,0 +1,39 @@
+<?php
+$all = array(
+	'list'=>array(
+		array(
+			'time'=>'6月21日',
+			'title'=>'招聘律师助理实习1'
+		),
+		array(
+			'time'=>'6月22日',
+			'title'=>'招聘律师助理实习2'
+		),
+		array(
+			'time'=>'6月23日',
+			'title'=>'招聘律师助理实习3'
+		),
+		array(
+			'time'=>'6月24日',
+			'title'=>'招聘律师助理实习4'
+		),
+		array(
+			'time'=>'6月25日',
+			'title'=>'招聘律师助理实习5'
+		),
+		array(
+			'time'=>'6月26日',
+			'title'=>'招聘律师助理实习6'
+		),
+		array(
+			'time'=>'6月27日',
+			'title'=>'招聘律师助理实习7'
+		),
+		array(
+			'time'=>'6月28日',
+			'title'=>'招聘律师助理实习8'
+		)
+	)
+);
+echo json_encode($all);
+?>

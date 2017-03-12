@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="keywords" content="浙江亿维律师事务所" />
+		<meta name="description" content="浙江亿维律师事务所" />
+		<title>律所动态</title>
+		<link rel="shortcut icon" href="img/favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="css/neat.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script type="text/javascript" src="js/library/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+	</head>
+
+	<body>
+		<div class="header">
+			<div class="logo">
+				<a href="index.html">
+					<img src="img/logo.png" width="100%" alt="logo" title="浙江亿维律师事务所" />
+				</a>
+			</div>
+			<ul class="nav">
+				<li>
+					<a href="index.html">首页</a>
+				</li>
+				<li>
+					<a href="law-business.html">律所业务</a>
+				</li>
+				<li class="start cur">
+					<a href="law-dynamic.html">律所动态</a>
+				</li>
+				<li>
+					<a href="team.html">团队介绍</a>
+				</li>
+				<li>
+					<a href="jionUs.html">加入我们</a>
+				</li>
+				<li>
+					<a href="case-express.html">案例速递</a>
+				</li>
+			</ul>
+		</div>
+		<div class="sub-banner">
+			<img src="img/sub-banner-img1.png" alt="" />
+		</div>
+		<div class="wrapper">
+			<div class="dynamic-cnt">
+				<div class="dynamic-section clearfix">
+					<div class="dynamic-section-first">
+						<a href="dynamic-details/head1.html">
+							<img src="img/dynamic-img1.png" alt="" />
+							<h3 class="dynamic-section-title nowrap">电子商务中的知识产权问题</h3>
+							<p class="dynamic-section-introduce nowrap">内容详情内容详情内容详情内容详情内容详情...</p>
+							<span class="dynamic-section-time">日期：2016年12月</span>
+							<div class="movie-mask"></div>
+							<div class="dynamic-layer">
+								<p>查看</p>
+							</div>
+						</a>
+					</div>
+					<div class="dynamic-section-second">
+						<a href="dynamic-details/head2.html">
+							<img src="img/dynamic-img2.png" alt="" class="fl" />
+							<h3 class="dynamic-section-title nowrap">电子商务中的知识产权问题</h3>
+							<p class="dynamic-section-introduce line2">内容详情内容详情内容详情内容详情内容详情...</p>
+							<span class="dynamic-section-time">日期：2016年12月</span>
+							<div class="movie-mask"></div>
+							<div class="dynamic-layer">
+								<p>查看</p>
+							</div>
+						</a>
+					</div>
+					<div class="dynamic-section-second">
+						<a href="dynamic-details/head3.html">
+							<img src="img/dynamic-img3.png" alt="" class="fr" />
+							<h3 class="dynamic-section-title nowrap">电子商务中的知识产权问题</h3>
+							<p class="dynamic-section-introduce line2">内容详情内容详情内容详情内容详情内容详情...</p>
+							<span class="dynamic-section-time">日期：2016年12月</span>
+							<div class="movie-mask"></div>
+							<div class="dynamic-layer">
+								<p>查看</p>
+							</div>
+						</a>
+					</div>
+				</div>
+				<div class="dynamic-list clearfix" id="dynamic-list"></div>
+				<a href="javascript:;" class="dynamic-more" id="dynamic-more">加载更多</a>
+			</div>
+			<div class="footer">
+				<p class="address">电话：0571-87003180&nbsp;&nbsp;&nbsp;&nbsp;E-mail：yiwei@yiweilawfirm.com
+					<br />地址：浙江省杭州市西湖区文一西路767号绿城西溪国际商务中心A座302-305室&nbsp;&nbsp;&nbsp;&nbsp;© 2016 浙江亿维律师事务所&nbsp;&nbsp;&nbsp;&nbsp;浙ICP备10013081号</p>
+			</div>
+		</div>
+		<!--返回顶部-->
+		<div id="backTop" title="回到顶部"></div>
+		<!--/返回顶部-->
+		<script>
+			$(function() {
+				//默认渲染
+				$.ajax({
+					type: "get",
+					url: "interface/dongtai.php",
+					async: false,
+					dataType: "json",
+					success: function(data) {
+						var html = "";
+						var dataId = 0;
+						for(var i = 0; i < data.list.length; i++) {
+							dataId = i + 1;
+							html = '<a href="dynamic-details/' + dataId + '.html" class="dynamic-list-a" data-id="' + dataId + '">';
+							html += '<img src="img/dynamic-list_img' + data.list[i].img + '.png" alt="" />';
+							html += '<p class="dynamic-list-title nowrap">' + data.list[i].title + '</p>';
+							html += '<div class="movie-mask"></div>';
+							html += '<div class="dynamic-layer">';
+							html += '<p>查看</p></div></a>';
+							$("#dynamic-list").append(html);
+						};
+					},
+					error: function(err) {
+						alert("错误信息：" + err.status);
+					}
+				});
+				//兼容ie8
+				$(".dynamic-list-a:nth-child(4n)").css("marginRight", "0");
+				//加载更多
+				$("#dynamic-more").click(function() {
+					var offset = $(".dynamic-list-a:last").attr("data-id");
+					$.ajax({
+						type: "post",
+						url: "interface/dongtai.php",
+						async: false,
+						//						data {
+						//							"offset": offset
+						//						},
+						dataType: "json",
+						success: function(data) {
+							var html = "";
+							var dataId = 0;
+							for(var i = 0; i < data.list.length; i++) {
+								dataId = parseInt(offset) + i + 1;
+								html = '<a href="dynamic-details/' + dataId + '.html" class="dynamic-list-a" data-id="' + dataId + '">';
+								html += '<img src="img/dynamic-list_img' + data.list[i].img + '.png" alt="" />';
+								html += '<p class="dynamic-list-title nowrap">' + data.list[i].title + '</p>';
+								html += '<div class="movie-mask"></div>';
+								html += '<div class="dynamic-layer">';
+								html += '<p>查看</p></div></a>';
+								$("#dynamic-list").append(html);
+							};
+						},
+						error: function(err) {
+							alert("错误信息：" + err.status);
+						}
+					});
+					//兼容ie8
+					$(".dynamic-list-a:nth-child(4n)").css("marginRight", "0");
+				});
+			});
+		</script>
+	</body>
+
+</html>

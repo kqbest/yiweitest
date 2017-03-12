@@ -1,0 +1,39 @@
+<?php
+$all = array(
+	'list'=>array(
+		array(
+			'img'=>'1',
+			'title'=>'杭州严厉打击盗版1'
+		),
+		array(
+			'img'=>'1',
+			'title'=>'杭州严厉打击盗版2'
+		),
+		array(
+			'img'=>'1',
+			'title'=>'杭州严厉打击盗版3'
+		),
+		array(
+			'img'=>'1',
+			'title'=>'杭州严厉打击盗版4'
+		),
+		array(
+			'img'=>'1',
+			'title'=>'杭州严厉打击盗版5'
+		),
+		array(
+			'img'=>'1',
+			'title'=>'杭州严厉打击盗版6'
+		),
+		array(
+			'img'=>'1',
+			'title'=>'杭州严厉打击盗版7'
+		),
+		array(
+			'img'=>'1',
+			'title'=>'杭州严厉打击盗版8'
+		)
+	)
+);
+echo json_encode($all);
+?>
