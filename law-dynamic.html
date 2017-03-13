@@ -94,71 +94,8 @@
 					<br />地址：浙江省杭州市西湖区文一西路767号绿城西溪国际商务中心A座302-305室&nbsp;&nbsp;&nbsp;&nbsp;© 2016 浙江亿维律师事务所&nbsp;&nbsp;&nbsp;&nbsp;浙ICP备10013081号</p>
 			</div>
 		</div>
-		<!--返回顶部-->
-		<div id="backTop" title="回到顶部"></div>
-		<!--/返回顶部-->
-		<script>
-			$(function() {
-				//默认渲染
-				$.ajax({
-					type: "get",
-					url: "interface/dongtai.php",
-					async: false,
-					dataType: "json",
-					success: function(data) {
-						var html = "";
-						var dataId = 0;
-						for(var i = 0; i < data.list.length; i++) {
-							dataId = i + 1;
-							html = '<a href="dynamic-details/' + dataId + '.html" class="dynamic-list-a" data-id="' + dataId + '">';
-							html += '<img src="img/dynamic-list_img' + data.list[i].img + '.png" alt="" />';
-							html += '<p class="dynamic-list-title nowrap">' + data.list[i].title + '</p>';
-							html += '<div class="movie-mask"></div>';
-							html += '<div class="dynamic-layer">';
-							html += '<p>查看</p></div></a>';
-							$("#dynamic-list").append(html);
-						};
-					},
-					error: function(err) {
-						alert("错误信息：" + err.status);
-					}
-				});
-				//兼容ie8
-				$(".dynamic-list-a:nth-child(4n)").css("marginRight", "0");
-				//加载更多
-				$("#dynamic-more").click(function() {
-					var offset = $(".dynamic-list-a:last").attr("data-id");
-					$.ajax({
-						type: "post",
-						url: "interface/dongtai.php",
-						async: false,
-						//						data {
-						//							"offset": offset
-						//						},
-						dataType: "json",
-						success: function(data) {
-							var html = "";
-							var dataId = 0;
-							for(var i = 0; i < data.list.length; i++) {
-								dataId = parseInt(offset) + i + 1;
-								html = '<a href="dynamic-details/' + dataId + '.html" class="dynamic-list-a" data-id="' + dataId + '">';
-								html += '<img src="img/dynamic-list_img' + data.list[i].img + '.png" alt="" />';
-								html += '<p class="dynamic-list-title nowrap">' + data.list[i].title + '</p>';
-								html += '<div class="movie-mask"></div>';
-								html += '<div class="dynamic-layer">';
-								html += '<p>查看</p></div></a>';
-								$("#dynamic-list").append(html);
-							};
-						},
-						error: function(err) {
-							alert("错误信息：" + err.status);
-						}
-					});
-					//兼容ie8
-					$(".dynamic-list-a:nth-child(4n)").css("marginRight", "0");
-				});
-			});
-		</script>
+		<script type="text/javascript" src="js/dynamic.js"></script>
+		<script type="text/javascript" src="js/backTop.js"></script>
 	</body>
 
 </html>

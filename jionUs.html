@@ -12,6 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="css/neat.css" />
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<script type="text/javascript" src="js/library/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="js/library/jquery.pagination.js"></script>
 		<script type="text/javascript" src="js/common.js"></script>
 	</head>
 
@@ -50,24 +51,19 @@
 			<h2 class="title-h2">&nbsp;&nbsp;&nbsp;&nbsp;亿维招聘<span class="title-h2-span">RECRUITMENT</span></h2>
 			<div class="joinUs-cnt">
 				<table class="joinUs-table" id="joinUs-table">
-					<tr>
-						<th>职位名称</th>
-						<th>学历要求</th>
-						<th>招聘人数</th>
-						<th>发布时间</th>
-						<th>查看详情</th>
-					</tr>
+					<thead>
+						<tr>
+							<th>职位名称</th>
+							<th>学历要求</th>
+							<th>招聘人数</th>
+							<th>发布时间</th>
+							<th>查看详情</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
 				</table>
-				<ul class="page-list clearfix">
-					<li>&lt;</li>
-					<li class="page-active">1</li>
-					<li>2</li>
-					<li>3</li>
-					<li>4</li>
-					<li>5</li>
-					<li>6</li>
-					<li>&gt;</li>
-				</ul>
+				<div class="M-box mgtop20"></div>
+				<p>当前页：<span class="now"></span>页/总页数：<span class="count"></span>页</p>
 			</div>
 			<h2 class="title-h2">&nbsp;&nbsp;联系我们<span class="title-h2-span">CONTACT US</span></h2>
 			<div class="joinUs-contact clearfix">
@@ -87,86 +83,8 @@
 					<br />地址：浙江省杭州市西湖区文一西路767号绿城西溪国际商务中心A座302-305室&nbsp;&nbsp;&nbsp;&nbsp;© 2016 浙江亿维律师事务所&nbsp;&nbsp;&nbsp;&nbsp;浙ICP备10013081号</p>
 			</div>
 		</div>
-		<!--返回顶部-->
-		<div id="backTop" title="回到顶部"></div>
-		<!--/返回顶部-->
-
-		<script>
-			$(function() {
-				$.ajax({
-					type: "post",
-					url: "interface/jionUs.php",
-					async: false,
-					data: {
-						"value": "1"
-					},
-					dataType: "json",
-					success: function(data) {
-						renderHtml(data);
-					},
-					error: function(err) {
-						alert("错误信息：" + err.status);
-					}
-				});
-
-				//渲染页面
-				function renderHtml(data) {
-					var html = "";
-					for(var i = 0; i < data.job.length; i++) {
-						html = '<tr>';
-						html += '<td>' + data.job[i].name + '</td><td>' + data.job[i].school + '</td><td>' + data.job[i].num + '</td><td>' + data.job[i].time + '</td>';
-						html += '<td><a href="javascript:;" class="detailsBtn" data-id=' + i + '>点击查看</a>';
-						html += '<div class="joinUs-details"><div class="back">&Chi;</div><div class="wrapper">';
-						html += '<h2 class="recruitment-title">' + data.job[i].name + '</h2>';
-						html += '<ul class="recruitment-info clearfix">';
-						html += '<li>职位薪资：' + data.job[i].salary + '元/月</li><li>工作地点：杭州-西湖区</li><li>发布日期：' + data.job[i].time + '</li><li>工作性质：' + data.job[i].type + '</li>';
-						html += '<li>工作经验：' + data.job[i].experience + '</li><li>最低学历：' + data.job[i].school + '</li><li>招聘人数：' + data.job[i].num + '人</li><li>部门：' + data.job[i].department + '</li></ul>';
-						html += '<div class="recruitment-responsibility">';
-						html += '<h3>一、岗位职责：</h3><ol>';
-						//岗位职责
-						for(var j = 0; j < data.job[i].list1.length; j++) {
-							html += '<li>' + data.job[i].list1[j].li + '</li>';
-						}
-						html += '</ol></div>';
-						html += '<div class="recruitment-responsibility"><h3>二、岗位要求：</h3><ol>';
-						//岗位要求
-						for(var j = 0; j < data.job[i].list2.length; j++) {
-							html += '<li>' + data.job[i].list2[j].li + '</li>';
-						}
-						html += '</ol></div>'
-						html += '<div class="recruitment-responsibility"><h3>工作地址：</h3><p>杭州市西湖区文一西路767号西溪国际商务中心A座302-305</p></div></div></div></td></tr>';
-						$("#joinUs-table").append(html);
-					};
-				};
-
-				//详情弹出框
-				$(".detailsBtn").on("click", function() {
-					$(this).siblings(".joinUs-details").fadeIn(600).parents("html,body").css({
-						overflowY: "hidden",
-						paddingRight: "8.5px"
-					});
-					$(".nav").css("padding-right", "17px");
-				});
-
-				//返回透明度
-				$(".back").mouseover(function() {
-					$(this).stop().animate({
-						opacity: "0.7"
-					}, 400);
-				}).mouseout(function() {
-					$(this).stop().animate({
-						opacity: "1"
-					}, 400);
-				}).click(function() {
-					$(".joinUs-details").fadeOut();
-					$(".detailsBtn").parents("html,body").css({
-						overflowY: "auto",
-						paddingRight: "0"
-					});
-					$(".nav").css("padding-right", "0");
-				});
-			});
-		</script>
+		<script type="text/javascript" src="js/joinUs.js"></script>
+		<script type="text/javascript" src="js/backTop.js"></script>
 	</body>
 
 </html>

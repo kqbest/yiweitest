@@ -57,62 +57,7 @@
 			<!--superslide-->
 			<div class="picScroll-left">
 				<div class="bd">
-					<ul class="picList">
-						<li>
-							<div class="pic">
-								<img src="img/team-list1-img1.png" alt="" />
-							</div>
-							<div class="lawyer-info">
-								<h3 class="lawyer-name">白衣客<span>诉讼律师</span></h3>
-								<p class="lawyer-introduce">毕业于辽宁师范大学、中国政法大学，获理学士、法学士的双学士学位，并在当年荣获“中国政法大学优秀毕业生”称号。</p>
-							</div>
-						</li>
-						<li>
-							<div class="pic">
-								<img src="img/team-list1-img2.png" alt="" />
-							</div>
-							<div class="lawyer-info">
-								<h3 class="lawyer-name">白衣客<span>诉讼律师</span></h3>
-								<p class="lawyer-introduce">毕业于辽宁师范大学、中国政法大学，获理学士、法学士的双学士学位，并在当年荣获“中国政法大学优秀毕业生”称号。</p>
-							</div>
-						</li>
-						<li>
-							<div class="pic">
-								<img src="img/team-list1-img3.png" alt="" />
-							</div>
-							<div class="lawyer-info">
-								<h3 class="lawyer-name">白衣客<span>诉讼律师</span></h3>
-								<p class="lawyer-introduce">毕业于辽宁师范大学、中国政法大学，获理学士、法学士的双学士学位，并在当年荣获“中国政法大学优秀毕业生”称号。</p>
-							</div>
-						</li>
-						<li>
-							<div class="pic">
-								<img src="img/team-list1-img4.png" alt="" />
-							</div>
-							<div class="lawyer-info">
-								<h3 class="lawyer-name">白衣客<span>诉讼律师</span></h3>
-								<p class="lawyer-introduce">毕业于辽宁师范大学、中国政法大学，获理学士、法学士的双学士学位，并在当年荣获“中国政法大学优秀毕业生”称号。</p>
-							</div>
-						</li>
-						<li>
-							<div class="pic">
-								<img src="img/team-list1-img1.png" alt="" />
-							</div>
-							<div class="lawyer-info">
-								<h3 class="lawyer-name">白衣客<span>诉讼律师</span></h3>
-								<p class="lawyer-introduce">毕业于辽宁师范大学、中国政法大学，获理学士、法学士的双学士学位，并在当年荣获“中国政法大学优秀毕业生”称号。</p>
-							</div>
-						</li>
-						<li>
-							<div class="pic">
-								<img src="img/team-list1-img2.png" alt="" />
-							</div>
-							<div class="lawyer-info">
-								<h3 class="lawyer-name">白衣客<span>诉讼律师</span></h3>
-								<p class="lawyer-introduce">毕业于辽宁师范大学、中国政法大学，获理学士、法学士的双学士学位，并在当年荣获“中国政法大学优秀毕业生”称号。</p>
-							</div>
-						</li>
-					</ul>
+					<ul class="picList"></ul>
 				</div>
 				<a class="next"></a>
 				<a class="prev"></a>
@@ -138,9 +83,35 @@
 					<br />地址：浙江省杭州市西湖区文一西路767号绿城西溪国际商务中心A座302-305室&nbsp;&nbsp;&nbsp;&nbsp;© 2016 浙江亿维律师事务所&nbsp;&nbsp;&nbsp;&nbsp;浙ICP备10013081号</p>
 			</div>
 		</div>
-		<!--返回顶部-->
-		<div id="backTop" title="回到顶部"></div>
-		<!--/返回顶部-->
+		<script>
+			//团队列表
+			$.ajax({
+				type: "get",
+				url: "interface/team-list.php",
+				async: false,
+				dataType: "json",
+				success: function(data) {
+					renderHtml_team(data);
+				},
+				error: function(err) {
+					alert("错误信息：" + err.status);
+				}
+			});
+			//团队列表渲染函数
+			function renderHtml_team(data) {
+				var html = "";
+				for(var i = 0; i < data.list.length; i++) {
+					html = '<li>';
+					html += '<div class="pic">';
+					html += '<img src="img/team-list1-img' + data.list[i].img + '.png" alt="" />';
+					html += '</div><div class="lawyer-info">';
+					html += '<h3 class="lawyer-name">' + data.list[i].name + '<span>' + data.list[i].subname + '</span></h3>';
+					html += '<p class="lawyer-introduce">' + data.list[i].introduce + '</p>';
+					html += '</div></li>';
+					$(".picList").append(html);
+				};
+			};
+		</script>
 		<script type="text/javascript">
 			jQuery(".picScroll-left").slide({
 				titCell: ".hd ul",
@@ -152,6 +123,7 @@
 				trigger: "click"
 			});
 		</script>
+		<script type="text/javascript" src="js/backTop.js"></script>
 	</body>
 
 </html>

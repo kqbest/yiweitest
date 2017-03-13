@@ -12,6 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="css/neat.css" />
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<script type="text/javascript" src="js/library/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="js/library/jquery.pagination.js"></script>
 		<script type="text/javascript" src="js/common.js"></script>
 	</head>
 
@@ -49,53 +50,16 @@
 		<div class="wrapper">
 			<div class="case-cnt">
 				<div class="case-list" id="case-list"></div>
-				<ul class="page-list clearfix">
-					<li>&lt;</li>
-					<li class="page-active">1</li>
-					<li>2</li>
-					<li>3</li>
-					<li>4</li>
-					<li>5</li>
-					<li>6</li>
-					<li>&gt;</li>
-				</ul>
+				<div class="M-box mgtop20"></div>
+				<p>当前页：<span class="now"></span>页/总页数：<span class="count"></span>页</p>
 			</div>
 			<div class="footer">
 				<p class="address">电话：0571-87003180&nbsp;&nbsp;&nbsp;&nbsp;E-mail：yiwei@yiweilawfirm.com
 					<br />地址：浙江省杭州市西湖区文一西路767号绿城西溪国际商务中心A座302-305室&nbsp;&nbsp;&nbsp;&nbsp;© 2016 浙江亿维律师事务所&nbsp;&nbsp;&nbsp;&nbsp;浙ICP备10013081号</p>
 			</div>
 		</div>
-		<!--返回顶部-->
-		<div id="backTop" title="回到顶部"></div>
-		<!--/返回顶部-->
-		<script>
-			$(function() {
-				$.ajax({
-					type: "get",
-					url: "interface/case.php",
-					async: true,
-					dataType: "json",
-					success: function(data) {
-						renderHtml(data);
-					},
-					error: function(err) {
-						alert("错误信息：" + err.status);
-					}
-				});
-
-				function renderHtml(data) {
-					var html = "";
-					for(var i = 0; i < data.list.length; i++) {
-						html = '<a href="case-details/' + (i + 1) + '.html" class="case-list-a" data-id=' + i + ' >';
-						html += '<p class="case-type">' + data.list[i].type + '<i>' + data.list[i].time + '</i></p>';
-						html += '<h3 class="case-title nowrap">' + data.list[i].title + '</h3>';
-						html += '<p class="case-introduce line2">' + data.list[i].introduce + '</p>';
-						html += '</a>';
-						$("#case-list").append(html);
-					};
-				};
-			});
-		</script>
+		<script type="text/javascript" src="js/express.js"></script>
+		<script type="text/javascript" src="js/backTop.js"></script>
 	</body>
 
 </html>

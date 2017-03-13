@@ -46,26 +46,4 @@ $(function() {
 			opacity: ".4"
 		}, 500);
 	});
-
-	//返回顶部
-	$(window).scroll(function() {
-		var scrTop = $(window).scrollTop();
-		var winHe = $(window).height();
-		if(scrTop > winHe) {
-			$("#backTop").fadeIn();
-		} else {
-			$("#backTop").fadeOut();
-		}
-	});
-	$("#backTop").click(function() {
-		$("html,body").animate({
-			scrollTop: 0
-		}, 1000);
-		return false;
-	});
-
-	//判断是否是IE8
-	if(navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion.match(/8./i) == "8.") {
-		$(".dynamic-list .dynamic-list-a:nth-child(4n)").css("margin-right", "0");
-	};
 });

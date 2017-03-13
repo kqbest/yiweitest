@@ -56,44 +56,7 @@
 					</ul>
 				</div>
 				<div class="bd">
-					<ul>
-						<li>
-							<a href="javascript:;">
-								<img src="img/banner1.png" alt="banner" />
-								<div class="banner-title">
-									<h1>创新</h1>
-									<p>不断发现新类型案件，勇于尝试新类型案件操作</p>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="javascript:;">
-								<img src="img/banner1.png" alt="banner" />
-								<div class="banner-title">
-									<h1>开拓</h1>
-									<p>不断发现新类型案件，勇于尝试新类型案件操作</p>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="javascript:;">
-								<img src="img/banner1.png" alt="banner" />
-								<div class="banner-title">
-									<h1>发展</h1>
-									<p>不断发现新类型案件，勇于尝试新类型案件操作</p>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="javascript:;">
-								<img src="img/banner1.png" alt="banner" />
-								<div class="banner-title">
-									<h1>进程</h1>
-									<p>不断发现新类型案件，勇于尝试新类型案件操作</p>
-								</div>
-							</a>
-						</li>
-					</ul>
+					<ul id="banner_ul"></ul>
 				</div>
 			</div>
 			<!--/superslide-->
@@ -144,43 +107,7 @@
 				</div>
 			</div>
 			<h2 class="title-h2">监测影片<span class="title-h2-span">FILM SHOW</span></h2>
-			<div class="movie clearfix">
-				<div class="movie-list movie-list-first">
-					<img src="img/movie-img1.png" width="100%" alt="" />
-					<div class="movie-mask"></div>
-					<p class="movie-introduce">以专业操作知识产权维权批量案件起家，致力于为客户提供专于为客以专业操作知识产权维权批量案件起家</p>
-				</div>
-				<div class="movie-list movie-list-second">
-					<img src="img/movie-img2.png" width="100%" alt="" />
-					<div class="movie-mask"></div>
-					<p class="movie-introduce">以专业操作知识产权维权批量案件起家，致力于为客户提供专于为客以专业操作知识产权维权批量案件起家</p>
-				</div>
-				<div class="movie-list movie-list-second">
-					<img src="img/movie-img3.png" width="100%" alt="" />
-					<div class="movie-mask"></div>
-					<p class="movie-introduce">以专业操作知识产权维权批量案件起家，致力于为客户提供专于为客以专业操作知识产权维权批量案件起家</p>
-				</div>
-				<div class="movie-list movie-list-third">
-					<img src="img/movie-img4.png" width="100%" alt="" />
-					<div class="movie-mask"></div>
-					<p class="movie-introduce">以专业操作知识产权维权批量案件起家，致力于为客户提供专于为客以专业操作知识产权维权批量案件起家</p>
-				</div>
-				<div class="movie-list movie-list-third">
-					<img src="img/movie-img5.png" width="100%" alt="" />
-					<div class="movie-mask"></div>
-					<p class="movie-introduce">以专业操作知识产权维权批量案件起家，致力于为客户提供专于为客以专业操作知识产权维权批量案件起家</p>
-				</div>
-				<div class="movie-list movie-list-third">
-					<img src="img/movie-img6.png" width="100%" alt="" />
-					<div class="movie-mask"></div>
-					<p class="movie-introduce">以专业操作知识产权维权批量案件起家，致力于为客户提供专于为客以专业操作知识产权维权批量案件起家</p>
-				</div>
-				<div class="movie-list movie-list-third">
-					<img src="img/movie-img7.png" width="100%" alt="" />
-					<div class="movie-mask"></div>
-					<p class="movie-introduce">以专业操作知识产权维权批量案件起家，致力于为客户提供专于为客以专业操作知识产权维权批量案件起家</p>
-				</div>
-			</div>
+			<div class="movie clearfix"></div>
 			<div class="advantage">
 				<div class="advantage-title">
 					<p class="advantage-title-p p1">亿维法律服务优势</p>
@@ -221,9 +148,7 @@
 					<br />地址：浙江省杭州市西湖区文一西路767号绿城西溪国际商务中心A座302-305室&nbsp;&nbsp;&nbsp;&nbsp;© 2016 浙江亿维律师事务所&nbsp;&nbsp;&nbsp;&nbsp;浙ICP备10013081号</p>
 			</div>
 		</div>
-		<!--返回顶部-->
-		<div id="backTop" title="回到顶部"></div>
-		<!--/返回顶部-->
+		<script type="text/javascript" src="js/indexRender.js"></script>
 		<script>
 			//轮播设置
 			jQuery(".slideBox").slide({
@@ -247,33 +172,7 @@
 				}
 			});
 		</script>
-		<script>
-			$(function() {
-				$.ajax({
-					type: "get",
-					url: "interface/zhaopin.php",
-					async: true,
-					dataType: "json",
-					success: function(data) {
-						renderHtml(data);
-					},
-					error: function(err) {
-						alert("错误信息：" + err.status);
-					}
-				});
-				//渲染页面
-				function renderHtml(data) {
-					var html = "";
-					for(var i = 0; i < data.list.length; i++) {
-						html = '<li class="news-right-list">';
-						html += '<a href="jionUs.html">';
-						html += '<b class="news-right-time">' + data.list[i].time + '</b>' + data.list[i].title;
-						html += '</a></li>';
-						$("#zhaopin_ul").append(html);
-					};
-				};
-			});
-		</script>
+		<script type="text/javascript" src="js/backTop.js"></script>
 	</body>
 
 </html>
